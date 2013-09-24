@@ -6,12 +6,15 @@ ANTLR=java -jar ../antlr-3.5-complete.jar
 
 all: parser
 
-parser: ParserLexer.o ParserParser.o main.o
+parser: ParserLexer.o ParserParser.o ASTParser.o main.o
 	$(LD) -o $@ $^ $(LDFLAGS)
 
-main.o: main.c ParserLexer.o ParserParser.o
+main.o: main.c ParserLexer.o ParserParser.o ASTParser.o
 
 %Lexer.c %Parser.c: %.g
+	$(ANTLR) $^
+
+%.c: %.g
 	$(ANTLR) $^
 
 clean:
