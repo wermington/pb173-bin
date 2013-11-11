@@ -21,7 +21,7 @@ static __attribute((noinline,noclone)) long syscall(unsigned int number, ...)
 		"movl 20(%%esp), %%esi\n"
 		"movl 24(%%esp), %%edi\n"
 		"movl 28(%%esp), %%ebp\n"
-		"int $0x80" : "=a" (ret) : "a" (number));
+		"int $0x80" : "=a" (ret) : "a" (number) : "ebx", "ecx", "edx", "esi", "edi", "ebp");
 #endif
 	return ret;
 }
