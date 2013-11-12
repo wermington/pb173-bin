@@ -6,7 +6,7 @@ static __attribute__((noinline)) void fun3(void)
 	unsigned int a;
 
 	for (a = 0; a < 300000; a++)
-		asm volatile("rep nop" ::: "memory");
+		asm volatile("nop" ::: "memory");
 }
 
 static __attribute__((noinline)) void fun2(void)
@@ -14,7 +14,7 @@ static __attribute__((noinline)) void fun2(void)
 	unsigned int a;
 
 	for (a = 0; a < 100000; a++)
-		asm volatile("rep nop" ::: "memory");
+		asm volatile("nop" ::: "memory");
 }
 
 static __attribute__((noinline)) void fun1(void)
