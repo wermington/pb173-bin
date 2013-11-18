@@ -1,9 +1,10 @@
 CC=gcc
-CFLAGS=-O2 -Wall -ggdb -fPIC
+CFLAGS=$(OPT) -Wall -ggdb -g3 -fPIC
 LD=gcc
-LDFLAGS=-O2 -ggdb -fPIC
+LDFLAGS=$(OPT) -ggdb -g3 -fPIC
+OPT=-O2
 
-all: cov prof prof_pg
+all: cov prof prof_pg thread
 
 cov.o: cov.c
 	$(CC) $(CFLAGS) --coverage -c -o $@ $<
@@ -19,7 +20,10 @@ prof_pg: prof_pg.o
 
 prof: prof.o
 
+thread: thread.o
+	$(CC) $(LDFLAGS) -o $@ $< -lpthread
+
 clean:
-	rm -f *.o cov prof prof_pg *.gcno
+	rm -f *.o *.gcno cov prof prof_pg thread
 
 .PHONY: all
