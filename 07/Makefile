@@ -1,7 +1,8 @@
 CC=gcc
-CFLAGS=-O2 -Wall -g -fPIC
+BITS=64
+CFLAGS=-O2 -Wall -g -m$(BITS)
 LD=gcc
-LDFLAGS=-O2 -g -fPIC -nostdlib -Wl,-e -Wl,start
+LDFLAGS=-O2 -g -m$(BITS) -nostdlib -Wl,-e -Wl,start
 
 all: nostd
 
