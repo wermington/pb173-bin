@@ -32,8 +32,16 @@ asm(
 #endif
 	"ret\n");
 
-void start()
+void c_start(void *stack)
 {
 	char buf[16];
-	syscall(__NR_read, 0, buf, 16);
+	long argc = *(long *)stack;
+	syscall(__NR_read, argc - 1, buf, 16);
 }
+
+asm(
+	".globl start\n"
+	"start:\n"
+	"mov %rsp, %rdi\n"
+	"jmp c_start"
+   );
