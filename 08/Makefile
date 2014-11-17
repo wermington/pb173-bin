@@ -11,4 +11,7 @@ memcheck: memcheck.o
 
 tracer: tracer.o
 
-.PHONY: all
+clean:
+	rm -f *.o
+
+.PHONY: all clean
