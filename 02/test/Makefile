@@ -2,7 +2,7 @@ CC=gcc
 LD=gcc
 CFLAGS=-O2 -Wall
 LDFLAGS=-O2 -L../ -lantlr3c
-ANTLR=java -jar ../antlr-3.5-complete.jar
+ANTLR=java -jar ../antlr-3.5.2-complete.jar
 
 all: parser
 
