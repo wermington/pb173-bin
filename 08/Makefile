@@ -1,17 +1,11 @@
 CC=gcc
-CFLAGS=-O2 -Wall -ggdb -fPIC
+BITS=64
+CFLAGS=-O2 -Wall -g -m$(BITS)
 LD=gcc
-LDFLAGS=-O2 -ggdb -fPIC
+LDFLAGS=-O2 -g -m$(BITS) -nostdlib -Wl,-e -Wl,start
 
-all: debug memcheck tracer
+all: nostd
 
-debug: debug.o
+nostd: nostd.o
 
-memcheck: memcheck.o
-
-tracer: tracer.o
-
-clean:
-	rm -f *.o
-
-.PHONY: all clean
+.PHONY: all

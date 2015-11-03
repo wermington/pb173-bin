@@ -1,29 +1,17 @@
 CC=gcc
-CFLAGS=$(OPT) -Wall -ggdb -g3 -fPIC
+CFLAGS=-O2 -Wall -ggdb -fPIC
 LD=gcc
-LDFLAGS=$(OPT) -ggdb -g3 -fPIC
-OPT=-O2
+LDFLAGS=-O2 -ggdb -fPIC
 
-all: cov prof prof_pg thread
+all: debug memcheck tracer
 
-cov.o: cov.c
-	$(CC) $(CFLAGS) --coverage -c -o $@ $<
+debug: debug.o
 
-cov: cov.o
-	$(CC) $(LDFLAGS) --coverage -o $@ $<
+memcheck: memcheck.o
 
-prof_pg.o: prof.c
-	$(CC) $(CFLAGS) -c -pg -o $@ $<
-
-prof_pg: prof_pg.o
-	$(CC) $(LDFLAGS) -pg -o $@ $<
-
-prof: prof.o
-
-thread: thread.o
-	$(CC) $(LDFLAGS) -o $@ $< -lpthread
+tracer: tracer.o
 
 clean:
-	rm -f *.o *.gcno cov prof prof_pg thread
+	rm -f *.o
 
-.PHONY: all
+.PHONY: all clean
