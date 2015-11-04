@@ -6,6 +6,7 @@
 #include <string.h>
 #include <unistd.h>
 
+#include <dwarf.h>
 #include <elfutils/libdw.h>
 #include <elfutils/libdwfl.h>
 
