@@ -42,6 +42,11 @@ void c_start(void *stack)
 asm(
 	".globl start\n"
 	"start:\n"
+#ifdef __x86_64__
 	"mov %rsp, %rdi\n"
+#else
+	"push %esp\n"
+	"push $-1\n" /* return address = nowhere */
+#endif
 	"jmp c_start"
    );
