@@ -4,7 +4,9 @@ LD=gcc
 LDFLAGS=$(OPT) -ggdb -g3 -fPIC
 OPT=-O2
 
-all: cov prof prof_pg thread
+all: cov debug prof prof_pg thread
+
+debug: debug.o
 
 cov.o: cov.c
 	$(CC) $(CFLAGS) --coverage -c -o $@ $<
